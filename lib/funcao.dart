@@ -1,7 +1,7 @@
 import 'dart:io';
 
 //!função de leitura de dados
-String inputoutput({required String message}) {
+String input({required String message}) {
   String? input;
   while (input == null) {
     print(message);
@@ -42,10 +42,10 @@ class Materia {
 
 void dadosAluno() {
   //?utilizando a função de leitura de dados
-  final aluno = inputoutput(message: "nome do aluno");
+  final aluno = input(message: "nome do aluno");
 
   final materia = int.parse(
-    inputoutput(
+    input(
         message: "digite:\n"
             "1-português\n"
             "2-matematica\n"
@@ -54,8 +54,8 @@ void dadosAluno() {
 
   switch (materia) {
     case 1:
-      final teste = double.parse(inputoutput(message: "teste de português"));
-      final prova = double.parse(inputoutput(message: "prova de português"));
+      final teste = double.parse(input(message: "teste de português"));
+      final prova = double.parse(input(message: "prova de português"));
       print("-----------------------------------------");
       Materia portugues = Materia("português", teste, prova);
       print("$aluno sua situação é:");
@@ -63,16 +63,16 @@ void dadosAluno() {
       break;
 
     case 2:
-      final teste = double.parse(inputoutput(message: "teste de matematica"));
-      final prova = double.parse(inputoutput(message: "prova de matematica"));
+      final teste = double.parse(input(message: "teste de matematica"));
+      final prova = double.parse(input(message: "prova de matematica"));
       print("-----------------------------------------");
       Materia matematica = Materia("matematica", teste, prova);
       print("$aluno sua situação é:");
       matematica.calcmedia();
       break;
     case 3:
-      final teste = double.parse(inputoutput(message: "teste de historia"));
-      final prova = double.parse(inputoutput(message: "prova de historia"));
+      final teste = double.parse(input(message: "teste de historia"));
+      final prova = double.parse(input(message: "prova de historia"));
       print("-----------------------------------------");
       Materia historia = Materia("historia", teste, prova);
       print("$aluno sua situação é:");
@@ -83,4 +83,21 @@ void dadosAluno() {
   //?----------------------------------------------?//
 
   print("--------------------------------");
+}
+
+void verificandoMedia() {
+  String respostaUsuario = input(message: "deseja sair?").toLowerCase();
+  if (respostaUsuario == "sim") {
+    print("saiu");
+    return;
+  }
+
+  if (respostaUsuario == "nao") {
+    dadosAluno();
+    verificandoMedia();
+    return;
+  }
+
+  print("não entendi digite novamente");
+  verificandoMedia();
 }
